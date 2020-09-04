@@ -21,13 +21,22 @@ test("form shows success message on submit with form details", () => {
     const zipInput = screen.getByLabelText(/Zip:/i)
 
     fireEvent.change(firstNameInput, {target: {value: "Maycie"} })
-    fireEvent.change(lastNameInput, {target: {value: "Morris"} } )
-    fireEvent.change(addressInput, {target: {value: "123 Address St"} } )
-    fireEvent.change(cityInput {target: {value: "City"} } )
-    fireEvent.change(stateInput, {target: {value: "State"} } )
+    fireEvent.change(lastNameInput, {target: {value: "Morris"} })
+    fireEvent.change(addressInput, {target: {value: "123 Address St"} })
+    fireEvent.change(cityInput, {target: {value: "City"} })
+    fireEvent.change(stateInput, {target: {value: "State"} })
     fireEvent.change(zipInput, {target: {value: "12345"} })
 
-    const submitButton = screen.getByText(/CHECKOUT/i)
+    const submitButton = screen.getByRole("button", /checkout/i)
     fireEvent.click(submitButton)
+
+
+    expect(screen.getByText(/Maycie/i)).toBeInTheDocument()
+    expect(screen.getByText(/Morris/i)).toBeInTheDocument()
+    expect(screen.getByText(/123 Address St/i)).toBeInTheDocument()
+    expect(screen.getByText(/City/i)).toBeInTheDocument()
+    expect(screen.getByText(/State/i)).toBeInTheDocument()
+    expect(screen.getByText(/12345/i)).toBeInTheDocument()
+
 
 });
