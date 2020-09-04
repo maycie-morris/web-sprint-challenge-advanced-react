@@ -8,6 +8,25 @@ export default class PlantList extends Component {
   //   - fetch data from the server endpoint - http://localhost:3333/plants
   //   - set the returned plants array to this.state.plants
 
+  constructor() {
+    super();
+    this.state = {
+      plants: []
+    }
+  }
+
+  componentDidMount() {
+    axios
+      .get(`http://localhost:3333/plants`)
+      .then((response) => {
+        console.log(response)
+        const myData = response.data.plantsData
+        this.setState({plants: myData})
+        // console.log(myData)
+      })
+      .catch((err) => console.log(err))
+  }
+
   /*********  DON'T CHANGE ANYTHING IN THE RENDER FUNCTION *********/
   render() {
     return (
